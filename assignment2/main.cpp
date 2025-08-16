@@ -9,12 +9,13 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <queue>
 #include <set>
 #include <string>
 #include <unordered_set>
 
-std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
+std::string kYourName = "Otto Z"; // Don't forget to change this!
 
 /**
  * Takes in a file name and returns a set containing all of the applicant names as a set.
@@ -28,7 +29,26 @@ std::string kYourName = "STUDENT TODO"; // Don't forget to change this!
  * to also change the corresponding functions in `utils.h`.
  */
 std::set<std::string> get_applicants(std::string filename) {
-  // STUDENT TODO: Implement this function.
+  // Potiential error: character ' isnot interprected correctly, it turns to /200/231 which 0x92 in binary.
+  std::ifstream ifs(filename);
+  std::set<std::string> applicants;
+  if (ifs.is_open()){
+    std::string applicant;
+    while(std::getline(ifs, applicant)){
+      applicants.insert(applicant);
+    }
+  }
+  ifs.close();
+  return applicants;
+
+}
+
+
+std::string getIntials(std::string name){
+  std::stringstream ss(name);
+  std::string first, last;
+  ss >> first >> last;
+  return std::string{first[0], last[0]};
 }
 
 /**
@@ -41,7 +61,15 @@ std::set<std::string> get_applicants(std::string filename) {
  */
 std::queue<const std::string*> find_matches(std::string name, std::set<std::string>& students) {
   // STUDENT TODO: Implement this function.
+  std::queue<const std::string*> matches;
+  std::string nameIntial = getIntials(name);
+  for(const std::string& student: students){
+    std::string studentIntial = getIntials(student);
+    if (studentIntial == nameIntial) matches.push(&student);
+  }
+  return matches;
 }
+
 
 /**
  * Takes in a queue of pointers to possible matches and determines the one true match!
@@ -55,6 +83,9 @@ std::queue<const std::string*> find_matches(std::string name, std::set<std::stri
  */
 std::string get_match(std::queue<const std::string*>& matches) {
   // STUDENT TODO: Implement this function.
+  int size = matches.size();
+  if (size == 0) return "NO MATCHES FOUND.";
+  return *matches.front();
 }
 
 /* #### Please don't remove this line! #### */

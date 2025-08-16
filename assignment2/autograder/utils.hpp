@@ -70,5 +70,7 @@ run_autograder()
 int
 main()
 {
+  // auto applciants = get_applicants("students.txt");
+  // std::cout << "Checking Debuging" << std::endl;
   return run_autograder();
 }
