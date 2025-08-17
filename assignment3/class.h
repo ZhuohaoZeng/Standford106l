@@ -2,19 +2,25 @@
 class creature{
     public:
         creature(float curHp, float maxHp);
-        virtual void setCurHp(float curHp) = 0;
-        virtual void setMaxHp(float maxHp) = 0;
-        virtual float getCurHp() const = 0;
-        virtual float getMaxHp() const = 0;
+        void setCurHp(float curHp);
+        void setMaxHp(float maxHp);
+        void setCreature(bool Creature);
+        float getCurHp() const;
+        float getMaxHp() const;
+        
+    protected:
         float curHp;
         float maxHp;
         float differenceHp;
-        
+        virtual void setDifferenceHp() = 0;
     private:
-        
-        virtual void SetDifferenceHp() = 0;
+        bool Creature;
+
 };
 
 class Goblin: public creature{
-    Goblin(float curHp, float maxHp) : creature(curHp, maxHp) {};
+    public:
+        Goblin(float curHp, float maxHp);
+    private:
+        void setDifferenceHp() override;
 };

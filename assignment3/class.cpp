@@ -1,9 +1,15 @@
 #include "class.h"
 
-Goblin::Goblin(float curHp, float maxHp){
+creature::creature (float curHp, float maxHp){
     this->curHp = curHp;
     this->maxHp = maxHp;
-    Goblin::SetDifferenceHp();
+}
+
+Goblin::Goblin (float curHp, float maxHp):
+        creature(curHp, maxHp) {
+    this->curHp = curHp;
+    this->maxHp = maxHp;
+    Goblin::setDifferenceHp();
 }
 
 float creature::getCurHp() const{
@@ -22,6 +28,10 @@ void creature::setMaxHp(float maxHp){
     this->maxHp = maxHp;
 }
 
-void creature::SetDifferenceHp(){
+void Goblin::setDifferenceHp(){
     this->differenceHp = maxHp - curHp;
+}
+
+void creature::setCreature(bool isCreature){
+    this->Creature = isCreature;
 }
