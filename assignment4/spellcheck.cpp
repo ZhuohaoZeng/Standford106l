@@ -12,6 +12,7 @@ std::vector<Iterator> find_all(Iterator begin, Iterator end, UnaryPred pred);
 
 Corpus tokenize(std::string& source) {
   /* TODO: Implement this method */
+  std::vector<std::string::iterator> Iterators = find_all(source.begin(), source.end(), [](char charc) {return std::isspace(static_cast<int>(charc));} );
   return Corpus();
 }
 
