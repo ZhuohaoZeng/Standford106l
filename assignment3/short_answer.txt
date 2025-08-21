@@ -5,7 +5,8 @@ Make a Class
 ------------
 
 Q1. What’s const-correctness and why is it important?
-A1. TODO
+A1. Because it tell the compilers the right behavior of methods. It help the programmers to make sure that some method won't causes action 
+out of predeication and keep the data safe.
 
 Q2. Is your class const-correct? How do you know?
-A2. TODO
+A2. No, because I am having a data member differenceHp that is calculated only on instanciation
