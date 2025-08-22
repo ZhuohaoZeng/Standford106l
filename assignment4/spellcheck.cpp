@@ -32,10 +32,10 @@ std::set<Misspelling> spellcheck(const Corpus& source, const Dictionary& diction
                     });//Working at it 
                     std::set<std::string> suggestions(sug.begin(), sug.end());
                     return Misspelling { token, suggestions };
-                  });
-
-
-  return misspellings;
+                  })
+                  | rv::filter([&dictionary](const Misspelling& m){return !m.suggestions.empty();});
+                  
+  return std::set<Misspelling>(v.begin(), v.end());
 };
 
 /* Helper methods */
