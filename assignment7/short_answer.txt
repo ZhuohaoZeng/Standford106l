@@ -5,10 +5,11 @@ Unique Pointer
 --------------
 
 Q1. List one or two benefits of using RAII to manage memory instead manually calling `new` and `delete`.
-A1. TODO
+A1. So that we can gurantee that memory will be released even some exceptions happened during a section and causing the later codes including release memory method not being called.
+Also It made the memory management easier becasue we don't have to manually calling new and delete so no problems like  we forgot to call deltete will happened. 
 
 Q2. When implementing move semantics for a `unique_ptr`, for example in the move constructor `unique_ptr(unique_ptr&& other)`, it is essential that we set the underlying pointer of the `other` parameter to `nullptr` before exiting the function. Explain in your own words what problem would arise if we did not.
-A2. TODO
+A2. Yes it is nessary. Because we go out of scope, the desctructor of other will be called and release the resources used including the other.ptr, if we don't reassign this other.ptr, it will points to the ptr we wants to move and deallocate it causing our ptr points unpredicable thing.
 
 Q3. This method of recursive deallocation through RAII works great for small lists, but may pose a problem for longer lists. Why? Hint: what is the limit for how "deep" a recursive function's call stack can grow?
 A3. TODO
